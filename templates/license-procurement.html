@@ -1,0 +1,374 @@
+{% load static %}
+{% static 'img' as BaseURL %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>License procurement portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.8/sweetalert2.css"
+        integrity="sha512-40/Lc5CTd+76RzYwpttkBAJU68jKKQy4mnPI52KKOHwRBsGcvQct9cIqpWT/XGLSsQFAcuty1fIuNgqRoZTiGQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static './css/license.css' %}">
+
+    <!-- <link rel="icon"
+            type="image/png"
+            href="https://www.svgrepo.com/show/236721/package.svg"> -->
+    <link rel="icon" type="image/png" href="{% static './img/index/package.svg' %}">
+
+</head>
+
+<body>
+
+
+    <header>
+        <div class="container">
+            <h1 class="logo">
+                <!-- < insert fancy logo here /> -->
+                <img src="{% static './img/index/package.svg' %}" height="100" width="150" style="vertical-align:
+                        middle;">License procurement
+
+                <!-- <img
+                        src="https://www.svgrepo.com/show/76944/documentation.svg"
+                        height="100" width="150" style="vertical-align:
+                        middle;">License procurement -->
+                <!-- <img src="https://www.svgrepo.com/show/127581/documentation.svg" height="100" width="150" style="vertical-align: middle;">License procurement -->
+                <!-- <img src="https://www.svgrepo.com/show/236721/package.svg" height="100" width="200" style="vertical-align: middle;">License procurement -->
+                <!-- <img src="https://www.svgrepo.com/show/151299/package.svg" height="100" width="200" style="vertical-align: middle;">License procurement -->
+                <!-- <img src="https://www.svgrepo.com/show/245519/license.svg" height="150" width="250" style="vertical-align: middle;">License procurement -->
+            </h1>
+
+            <nav>
+                <ul>
+                    <li> <a href="/">Home</a></li>
+                    <!-- <li> <a href="./pricing.html">Pricing</a></li> -->
+                    <!-- <li> <a target="_blank"
+                                href="https://www.jetbrains.com/store/#commercial">Pricing</a></li> -->
+                    <li> <a id="pricing" target="_blank" onclick="pricing(this);">Pricing</a></li>
+                    <li> <a href="mailto:Dev-Platform-DevTool@wal-mart.com">Contact</a></li>
+                    <li>
+                        <form action="javascript:search(document.getElementById('search').value)">
+                            <input placeholder="type PyCharm or IntelliJ" type="text" id="search" class="search-box">
+                            <label for="search-box"><span class="fa
+                                        fa-search search-icon"></span></label>
+                            <!-- <input type="button" onsubmit="search(document.getElementById('search').value)"> -->
+                            <input type="submit" id="search-submit" />
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div>
+        <div style="margin-top: 200px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800;">JetBrains
+            Products
+            <a target="_blank" href="https://www.jetbrains.com/"><img
+                    src="{% static './img/jetbrain-products/img/Jetbrains-products/jetbrains.svg' %}" width="125" height="135"
+                    style="vertical-align: middle;"></a>
+        </h2>
+        <div style="margin-top: 30px;"></div>
+    </div>
+    <div>
+        <h2 id="IDEs" style="font-size: 1.25rem; font-weight: 800;
+                text-align: center;">All 11 IDEs
+            <!-- <hr> -->
+        </h2>
+        <br>
+        <p style="color: grey; font-size: 1rem; max-width: 1080px;
+                text-align: center;">Essential
+            tools for software developers and teams. Whichever technologies
+            you use, there's a JetBrains tool to match.</p>
+    </div>
+
+    <!-- Newly added! -->
+    <div class="cards">
+        {% for product in products %}
+    
+
+        <div class="card">
+            <div class="card__image-holder">
+                <img class="card__image"
+                    src="{{product.img.url}}"
+                    alt="{{product.name}}" />
+            </div>
+            <div class="card-title">
+                <a href="#" class="toggle-info btn">
+                    <span class="left"></span>
+                    <span class="right"></span>
+                </a>
+                <h2>
+                    {{product.name}}
+                    <!-- <small>Image from unsplash.com</small> -->
+                </h2>
+            </div>
+            <div class="card-flap flap1">
+                <div class="card-description">
+                    {{product.desc}}
+                </div>
+                <div class="card-flap flap2">
+                    <div class="card-actions">
+                        <a style="margin: 0 auto;" id="{{product.url_id}}" class="fill-1" onclick="fill_tech(this);">Get
+                            license! 📝</a>
+                        <div style="margin-top: 10px;"></div>
+                        <a style="margin: 0 auto;" id="{{product.url_id}}" class="fill-1" onclick="hrefs(this);"
+                            href="{{url}}" target="_blank">Info ℹ️</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+
+    <div style="margin-top: 40px;"></div>
+    <!-- End of IDEs -->
+
+    <div>
+        <h2 id="dotUltimate" style="font-size: 1.25rem; font-weight:
+                800; text-align: center;">Dot-Ultimate
+            <!-- <img src="https://resources.jetbrains.com/storage/products/dotnet/img/meta/preview.png" class="image-dotultimate" height="15%" width="15%"
+      style="vertical-align: middle; margin-left: 10px; margin-right: auto;"> -->
+        </h2>
+        <br>
+        <p style="color: grey; font-size: 1rem; max-width: 1080px;
+                text-align: center;">Empowering
+            Your .NET
+            and Visual Studio Development. All .NET tools, ReSharper C++,
+            and JetBrains Rider, together in one pack.</p>
+        <div style="margin-top: 40px;"></div>
+    </div>
+
+    <div class="button-extras">
+        <a style="margin: 0 auto;" id="fill dotultimate" class="fill" onclick="fill_package(this);">Get
+            license! 📝</a>
+        <a style="margin: 0 auto; margin-left: 10px;" id="fill" class="fill" target="_blank"
+            href="https://www.jetbrains.com/dotnet/">Info ℹ️</a>
+    </div>
+
+    <!-- Adding dotUltimate tools -->
+
+    <div class="cards">
+        {% for dot_product in dot_products %}
+        <div class="card">
+            <div class="card__image-holder">
+                <img class="card__image"
+                    src="{{dot_product.img.url}}"
+                    alt="{{dot_product.name}}" />
+            </div>
+            <div class="card-title">
+                <a href="#" class="toggle-info btn">
+                    <span class="left"></span>
+                    <span class="right"></span>
+                </a>
+                <h2>
+                    {{dot_product.name}}
+                    <!-- <small>Image from unsplash.com</small> -->
+                </h2>
+            </div>
+            <div class="card-flap flap1">
+                <div class="card-description">
+                    {{dot_product.desc}}
+                </div>
+                <div class="card-flap flap2">
+                    <div class="card-actions">
+                        <a style="margin: 0 auto;" id="{{dot_product.url_id}}" class="fill-1" onclick="fill_tech(this);">Get
+                            license! 📝</a>
+                        <div style="margin-top: 10px;"></div>
+                        <a style="margin: 0 auto;" id="{{dot_product.url_id}}" class="fill-1" target="_blank"
+                            onclick="hrefs(this);" href="{{dot_product.url}}">Info ℹ️</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <!-- Ending dotUltimate tools -->
+
+    <div style="margin-top: 50px;"></div>
+
+    <div>
+        <h2 id="All-Products-Pack" style="font-size:1.25rem;
+                font-weight: 800; text-align: center;">All Products Pack
+            <!-- <img src="https://resources.jetbrains.com/storage/products/dotnet/img/meta/preview.png" class="image-dotultimate" height="15%" width="15%"
+      style="vertical-align: middle; margin-left: 10px; margin-right: auto;"> -->
+        </h2>
+        <br>
+        <p style="color: grey; font-size: 1rem; max-width: 1080px;">The
+            complete
+            developer toolkit. Get access to all JetBrains desktop tools
+            including 11 IDEs, 3 extensions and 2 profilers.</p>
+        <div style="margin-top: 30px;"></div>
+        <ul style="padding-left: 0px; font-size: 0.9rem; display: table;
+                margin: 0 auto; list-style: disc;">
+            <li>Get access to all JetBrains desktop tools including 11
+                IDEs
+
+            </li>
+            <br>
+            <li>3 extensions and 2 profilers
+                <div style="margin-top: 15px;"></div>
+                <h3 style="margin-left: 50px; font-size: 0.9rem;">includes
+                    : </h3>
+                <div style="margin-top: 10px;"></div>
+                <ul style="margin-left: 100px; font-size: 0.9rem;
+                        list-style: disc; display: table;">
+                    <li>ReSharper</li>
+                    <li>ReSharper C++</li>
+                    <li>dotTrace</li>
+                    <li>dotMemory</li>
+                    <li>dotCover</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div style="margin-top: 40px;"></div>
+
+    <div class="button-extras">
+        <a style="margin: 0 auto;" id="fill all" class="fill" onclick="fill_package(this);">Get
+            license! 📝</a>
+        <a style="margin: 0 auto; margin-left: 15px;" id="fill" class="fill" target="_blank"
+            href="https://www.jetbrains.com/all/">Info ℹ️</a>
+    </div>
+    <div style="margin-top: 50px;"></div>
+
+
+    <div>
+        <h2 id="Team-tools-services" style="font-size:1.25rem;
+                font-weight: 800; text-align: center;">Team tools &
+            services
+            <!-- <img src="https://resources.jetbrains.com/storage/products/dotnet/img/meta/preview.png" class="image-dotultimate" height="15%" width="15%"
+    style="vertical-align: middle; margin-left: 10px; margin-right: auto;"> -->
+        </h2>
+        <br>
+        <p style="color: grey; font-size: 1rem; max-width: 1080px;
+                text-align: center;">JetBrains
+            offers general-purpose CI/CD solution that allows the most
+            flexibility for all sorts of workflows and development
+            practices.</p>
+    </div>
+
+
+    <div class="cards">
+        {% for tool_product in tool_products %}
+        <div class="card">
+            <div class="card__image-holder">
+                <img class="card__image" src="{{tool_product.img.url}}"
+                    alt="{{tool_product.name}}" />
+            </div>
+            <div class="card-title">
+                <a href="#" class="toggle-info btn">
+                    <span class="left"></span>
+                    <span class="right"></span>
+                </a>
+                <h2>
+                    {{tool_product.name}}
+                    <!-- <small>Image from unsplash.com</small> -->
+                </h2>
+            </div>
+            <div class="card-flap flap1">
+                <div class="card-description">
+                    {{tool_product.desc}}
+                </div>
+                <div class="card-flap flap2">
+                    <div class="card-actions">
+                        <a style="margin: 0 auto;" id="{{tool_product.url_id}}" class="fill-1" onclick="fill_tech(this);">Get
+                            license! 📝</a>
+                        <div style="margin-top: 10px;"></div>
+                        <a style="margin: 0 auto;" id="{{tool_product.url_id}}" class="fill-1" target="_blank"
+                            onclick="hrefs(this);" href="{{tool_product.url}}">Info ℹ️</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+      
+    <div>
+        <div style="margin-top: 25px;"></div>
+        <h2 style="font-size: 1.5rem; font-weight: 800;">Docker, Inc.<a
+                href="https://www.docker.com/products/docker-desktop/"><img
+                    src="{% static './img/docker/docker.svg' %}" width="250" height="250" style="vertical-align:
+                        middle;"></a>
+        </h2>
+    </div>
+    <div>
+        <h2 id="docker-desktop" style="font-size: 1.25rem; font-weight:
+                800; text-align: center;">Docker Desktop
+            <!-- <hr> -->
+        </h2>
+        <br>
+        <p style="color: grey; font-size: 1rem; max-width: 1080px;
+                text-align: center;">Docker
+            Desktop is an easy-to-install application for your Mac or
+            Windows environment that enables you to build and share
+            containerized applications and microservices. Docker Desktop
+            includes Docker Engine, Docker CLI client, Docker Compose,
+            Docker Content Trust, Kubernetes, and Credential Helper.</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card__image-holder">
+                <img class="card__image"
+                    src="{% static './img/docker/docker-desktop.png' %}"
+                    alt="wave" />
+            </div>
+            <div class="card-title">
+                <a href="#" class="toggle-info btn">
+                    <span class="left"></span>
+                    <span class="right"></span>
+                </a>
+                <h2>
+                    Docker Desktop
+                    <!-- <small>Image from unsplash.com</small> -->
+                </h2>
+            </div>
+            <div class="card-flap flap1">
+                <div class="card-description">
+                    Docker Desktop delivers the speed, choice and security you need for designing and delivering these
+                    containerized applications on your desktop.
+                </div>
+                <div class="card-flap flap2">
+                    <div class="card-actions">
+                        <a style="margin: 0 auto;" id="fill docker_desktop" class="fill-1"
+                            onclick="fill_tech(this);">Get license! 📝</a>
+                        <div style="margin-top: 10px;"></div>
+                        <a style="margin: 0 auto;" id="fill docker_desktop" class="fill-1" target="_blank"
+                            onclick="hrefs(this);" href="https://www.docker.com/products/docker-desktop/">Info ℹ️</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- partial:index.partial.html -->
+    <div style="margin-top: 30px;"></div>
+    <div class="footer">© <strong>2022 Walmart. All Rights Reserved.</strong></div>
+    <!-- partial -->
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <!-- <script
+            src='https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script> -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.8/sweetalert2.min.js"
+        integrity="sha512-7x7HoEikRZhV0FAORWP+hrUzl75JW/uLHBbg2kHnPdFmScpIeHY0ieUVSacjusrKrlA/RsA2tDOBvisFmKc3xw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{% static './js/script.js' %}"></script>
+
+    <script>
+        function search(string) {
+            window.find(string);
+        }
+    </script>
+</body>
+
+</html>

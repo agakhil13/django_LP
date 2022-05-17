@@ -1,0 +1,563 @@
+@import url("https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap");
+
+:root {
+    --d: 700ms;
+    --e: cubic-bezier(0.19, 1, 0.22, 1);
+    --font-sans: "Rubik", sans-serif;
+    --font-serif: "Cardo", serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.page-content {
+    display: grid;
+    grid-gap: 1rem;
+    padding: 1rem;
+    max-width: 1024px;
+    margin: 0 auto;
+    font-family: var(--font-sans);
+}
+
+@media (min-width: 600px) {
+    .page-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 800px) {
+    .page-content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ----------------------------------------------------------------------------------------- */
+
+/* Adding the CSS for header */
+
+a.btn {
+    /* background: #6C63FF; */
+    background: #bfbcfa;
+    border-radius: 4px;
+    box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    display: inline-block;
+    padding: 6px 30px 8px;
+    position: relative;
+    text-decoration: none;
+    transition: all 0.1s 0s ease-out;
+}
+
+.no-touch a.btn:hover {
+    background: #6C63FF;
+    box-shadow: 0px 8px 2px 0 rgba(0, 0, 0, 0.075);
+    transform: translateY(-2px);
+    transition: all 0.25s 0s ease-out;
+}
+
+.no-touch a.btn:active,
+a.btn:active {
+    background: #6C63FF;
+    box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.25);
+    transform: translate3d(0, 1px, 0);
+    transition: all 0.025s 0s ease-out;
+}
+
+div.cards {
+    margin: 50px auto;
+    max-width: 900px;
+    text-align: center;
+}
+
+div.card {
+    background: #ffffff;
+    display: inline-block;
+    margin: 8px;
+    max-width: 165px;
+    perspective: 1000;
+    position: relative;
+    text-align: left;
+    transition: all 0.3s 0s ease-in;
+    width: 300px;
+    z-index: 1;
+}
+
+div.card img {
+    max-width: 150px;
+    position: relative;
+    left: 8px;
+}
+
+div.card .card__image-holder {
+    background: rgba(0, 0, 0, 0.1);
+    height: 0;
+    padding-bottom: 75%;
+}
+
+div.card div.card-title {
+    background: #ffffff;
+    padding: 6px 15px 10px;
+    position: relative;
+    z-index: 0;
+}
+
+div.card div.card-title a.toggle-info {
+    border-radius: 32px;
+    height: 32px;
+    padding: 0;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 32px;
+}
+
+div.card div.card-title a.toggle-info span {
+    background: #ffffff;
+    display: block;
+    height: 2px;
+    position: absolute;
+    top: 16px;
+    transition: all 0.15s 0s ease-out;
+    width: 12px;
+}
+
+div.card div.card-title a.toggle-info span.left {
+    right: 14px;
+    transform: rotate(45deg);
+}
+
+div.card div.card-title a.toggle-info span.right {
+    left: 14px;
+    transform: rotate(-45deg);
+}
+
+div.card div.card-title h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    margin: 0;
+    padding: 0;
+}
+
+div.card div.card-title h2 small {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+div.card div.card-description {
+    padding: 5px 15px 10px;
+    position: relative;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 525;
+}
+
+div.card div.card-actions {
+    box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.075);
+    padding: 10px 15px 20px;
+    text-align: center;
+}
+
+div.card div.card-flap {
+    background: #d9d9d9;
+    position: absolute;
+    width: 100%;
+    transform-origin: top;
+    transform: rotateX(-90deg);
+}
+
+div.card div.flap1 {
+    transition: all 0.3s 0.3s ease-out;
+    z-index: -1;
+}
+
+div.card div.flap2 {
+    transition: all 0.3s 0s ease-out;
+    z-index: -2;
+}
+
+div.cards.showing div.card {
+    cursor: pointer;
+    opacity: 0.6;
+    transform: scale(0.88);
+}
+
+.no-touch div.cards.showing div.card:hover {
+    opacity: 0.94;
+    transform: scale(0.92);
+}
+
+div.card.show {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+div.card.show div.card-title a.toggle-info {
+    background: #ff6666 !important;
+}
+
+div.card.show div.card-title a.toggle-info span {
+    top: 15px;
+}
+
+div.card.show div.card-title a.toggle-info span.left {
+    right: 10px;
+}
+
+div.card.show div.card-title a.toggle-info span.right {
+    left: 10px;
+}
+
+div.card.show div.card-flap {
+    background: #ffffff;
+    transform: rotateX(0deg);
+}
+
+div.card.show div.flap1 {
+    transition: all 0.3s 0s ease-out;
+}
+
+div.card.show div.flap2 {
+    transition: all 0.3s 0.2s ease-out;
+}
+
+/* ----------------------------------------------------------------------------------------- */
+
+
+/* ----------------------------------------------------------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-size: 15px;
+}
+
+body {
+    font-size: 1.5rem;
+    font-family: "Questrial", sans-serif;
+}
+
+.container {
+    padding: 0 2rem;
+    /* max-width: 2900px; */
+    margin: 0 auto;
+    width: 100%;
+}
+
+.container:before,
+.container:after {
+    content: "";
+    display: table;
+}
+
+.container:after {
+    clear: both;
+}
+
+.row {
+    margin-bottom: 2rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+}
+
+.row:before,
+.row:after {
+    content: "";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
+
+.col {
+    float: left;
+    box-sizing: border-box;
+    width: 33.33333%;
+    padding: 0 1.5rem;
+}
+
+.col div {
+    height: 500px;
+    background: #00CCD4;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    will-change: height;
+    position: fixed;
+    height: 13rem;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    background-color: #fff;
+    transition: all 300ms ease;
+}
+
+header.shrunk {
+    height: 8rem;
+}
+
+nav {
+    display: block;
+    float: right;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul:before,
+nav ul:after {
+    content: "";
+    display: table;
+}
+
+nav ul:after {
+    clear: both;
+}
+
+nav ul li {
+    float: left;
+    line-height: 6.5rem;
+    /* padding-left: 5rem; */
+    padding-left: 60px;
+}
+
+nav a {
+    font-size: 1.5rem;
+    /* text-transform: uppercase; */
+    color: #5E5E5E;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    /* color: blueviolet; */
+    /* font-size: 120%; */
+    color: #6C63FF;
+}
+
+.logo {
+    width: 500px;
+    float: left;
+    font-size: 2rem;
+    font-weight: 2000;
+    margin: 0;
+    margin-left: 65px;
+    padding: 0;
+    display: block;
+    /* text-transform: uppercase; */
+}
+
+.logo:hover {
+    /* font-size: 150%; */
+    color: #6C63FF;
+    transition: color 0.6s ease;
+}
+
+.hero {
+    height: 600px;
+    background-color: #00CCD4;
+    margin-bottom: 3rem;
+}
+
+.hero img {
+    opacity: 0.5;
+}
+
+main {
+    margin-top: 13rem;
+}
+
+/* Heading for IDE */
+
+#Logo {
+    position: relative;
+    background: url(/IMAGES/Photo\ by\ aldain-austria\ on\ unsplash.jpg);
+    width: 100%;
+    height: 100%;
+}
+
+#Logo h1 {
+    position: absolute;
+    top: 26%;
+    border-bottom: red solid 4px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Search bars! */
+
+.search-box {
+    transition: width 0.6s, border-radius 0.6s, background 0.6s, box-shadow 0.6s;
+    width: 90px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    background: #ebebeb;
+}
+
+.search-box+label .search-icon {
+    color: black;
+}
+
+.search-box:hover {
+    color: white;
+    background: #c8c8c8;
+    box-shadow: 0 0 0 5px #3d4752;
+}
+
+.search-box:hover+label .search-icon {
+    color: white;
+}
+
+.search-box:focus {
+    transition: width 0.6s cubic-bezier(0, 1.22, 0.66, 1.39), border-radius 0.6s, background 0.6s;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding-left: 15px;
+    cursor: text;
+    width: 300px;
+    border-radius: auto;
+    background: #ebebeb;
+    color: black;
+}
+
+.search-box:focus+label .search-icon {
+    color: black;
+}
+
+.search-box:not(:focus) {
+    text-indent: -5000px;
+}
+
+#search-submit {
+    position: relative;
+    left: -5000px;
+}
+
+.search-icon {
+    position: relative;
+    left: -30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Footer */
+
+.footer {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.5rem;
+    background-color: whitesmoke;
+    text-align: center;
+    font-size: 1.0rem;
+    /* max-width: 2280px; */
+    /* margin: 0 auto; */
+    width: 100%;
+}
+
+/* Buttons */
+
+.fill:hover,
+.fill:focus {
+    box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+.fill {
+    /* --color: #a972cb; */
+    /* --hover: #cb72aa; */
+    /* --color: #837cfa; */
+    --color: #000000;
+    --hover: #6C63FF;
+}
+
+.fill {
+    color: var(--color);
+    transition: 0.25s;
+}
+
+.fill:hover, .fill:focus {
+    border-color: var(--hover);
+    /* border-color: #000000; */
+    color: #fff;
+}
+
+.fill {
+    /* background: none; */
+    background: #bfbcfa;
+    /* background: #6C63FF;
+    color: white; */
+    /* border: 3px solid; */
+    border-radius: 4px;
+    /* font: inherit; */
+    font-size: 1.2rem;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 0.5em 0.8em;
+    text-decoration: none;
+}
+
+.fill-1 {
+    /* background: none; */
+    background: #bfbcfa;
+    /* border: 3px solid; */
+    border-radius: 4px;
+    font: inherit;
+    font-size: 1.1rem;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 0.3em 0.5em;
+    text-decoration: none;
+}
+
+.fill-1:hover,
+.fill-1:focus {
+    box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+.fill-1 {
+    /* --color: #a972cb; */
+    /* --hover: #cb72aa; */
+    --color: #484851;
+    --color: #000000;
+    --hover: #6C63FF;
+}
+
+.fill-1 {
+    color: var(--color);
+    transition: 0.25s;
+}
+
+.fill-1:hover, .fill-1:focus {
+    border-color: var(--hover);
+    /* border-color: #000000; */
+    color: #fff;
+}

@@ -1,0 +1,120 @@
+{% load static %}
+{% static 'img' as BaseURL %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+                    initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>License procurement portal</title>
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.8/sweetalert2.css"
+        integrity="sha512-40/Lc5CTd+76RzYwpttkBAJU68jKKQy4mnPI52KKOHwRBsGcvQct9cIqpWT/XGLSsQFAcuty1fIuNgqRoZTiGQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- <link rel="icon" type="image/png" href="https://www.svgrepo.com/show/236721/package.svg"> -->
+    <link rel="icon" type="image/png" href="{% static './img/index/package.svg' %}">
+</head>
+
+<body>
+
+    <!-- Logo and Menu -->
+    <header id="header">
+        <div class="wrapper">
+            <a href="/">
+                <img src="{% static './img/index/package.svg' %}" width="100" height="100">
+                <!-- <h1 class="logo">License Procurement</h1> -->
+            </a>
+
+
+            <!-- Menu Links-->
+
+            <ul class="menu-left">
+                <!-- <li><a href="#">
+                                    Our mission
+                                </a></li> -->
+                <!-- <li><a target="_blank" href="./html/services.html">
+                                    Services
+                                </a></li> -->
+                <!-- <li><a target="_blank" href="./html/pricing.html">
+                                    Pricing
+                                </a></li> -->
+                <!-- <li><a target="_blank"
+                                    href="https://www.jetbrains.com/store/#commercial">
+                                    Pricing
+                                </a></li> -->
+                <li><a href="/">Home
+                    </a></li>
+                <li><a target="_blank" onclick="pricing(this);">Pricing
+                    </a></li>
+                <li><a href="mailto:Dev-Platform-DevTool@wal-mart.com">
+                        Contact
+                    </a></li>
+            </ul>
+
+            <!-- 
+                        <ul class="menu-right">
+                            <li class="menu-cta"><a href="#">Get Started</a></li>
+                        </ul> -->
+        </div>
+    </header>
+
+    <!-- MENU END -->
+
+    <!-- INTRO PAGE START -->
+
+    <section id="intro">
+
+        <div class="top-right-gradient">
+
+        </div>
+        <div class="wrapper" style="margin-top: 60px;">
+
+            <div class="intro-left">
+                <h1>Making dev-tools licenses available to all</h1>
+                <p>Every development practice requires us to use
+                    some sort of development tools 🔧. There is a
+                    large number of options to choose from 🤔.
+                    Procure your favorite IDEs 👩‍💻, product packs
+                    📦 and other dev-tools ⚙️ licenses easily! </p>
+                <a href="{% url 'license' %}" class="intro-cta">
+                    Go to license procurement portal
+                </a>
+            </div>
+
+            <div class="intro-right">
+                <!-- <img
+                                src="https://i.postimg.cc/bJJR3th2/undraw-growth-analytics-8btt.png"
+                                alt="image"> -->
+                <img src="{% static './img/index/license.svg' %}" alt="image" height="225" width="0" style="position: relative; z-index:-5;
+                                margin-bottom: 110px; margin-right: 25px;">
+            </div>
+        </div>
+
+        <div class="bottom-left-gradient">
+
+        </div>
+
+    </section>
+
+    <div style="margin-top: 100px;"></div>
+    <div class="footer">© <strong>2022 Walmart. All Rights Reserved.</strong></div>
+    <!-- Intro Page END -->
+
+</body>
+
+</html>
+<!-- partial -->
+<script src="{% static './js/script.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.8/sweetalert2.min.js"
+    integrity="sha512-7x7HoEikRZhV0FAORWP+hrUzl75JW/uLHBbg2kHnPdFmScpIeHY0ieUVSacjusrKrlA/RsA2tDOBvisFmKc3xw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+
+</html>
