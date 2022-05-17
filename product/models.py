@@ -32,3 +32,13 @@ class ToolProduct(models.Model):
 
     def __str__(self):
         return self.name
+
+class Docker(models.Model):
+    name = models.CharField(max_length=50)
+    desc = models.CharField(max_length=1000)
+    url = models.CharField(max_length=255)
+    url_id = models.CharField(max_length=100)
+    img = models.ImageField(upload_to='docker_product')
+
+    def __str__(self):
+        return self.name

@@ -314,12 +314,12 @@
     </div>
 
     <div class="cards">
-
+        {% for docker_prod in docker_prods %}
         <div class="card">
             <div class="card__image-holder">
                 <img class="card__image"
-                    src="{% static './img/docker/docker-desktop.png' %}"
-                    alt="wave" />
+                    src="{{docker_prod.img.url}}"
+                    alt="{{docker_prod.name}}" />
             </div>
             <div class="card-title">
                 <a href="#" class="toggle-info btn">
@@ -327,26 +327,26 @@
                     <span class="right"></span>
                 </a>
                 <h2>
-                    Docker Desktop
+                    {{docker_prod.name}}
                     <!-- <small>Image from unsplash.com</small> -->
                 </h2>
             </div>
             <div class="card-flap flap1">
                 <div class="card-description">
-                    Docker Desktop delivers the speed, choice and security you need for designing and delivering these
-                    containerized applications on your desktop.
+                    {{docker_prod.desc}}
                 </div>
                 <div class="card-flap flap2">
                     <div class="card-actions">
-                        <a style="margin: 0 auto;" id="fill docker_desktop" class="fill-1"
+                        <a style="margin: 0 auto;" id="{{docker_prod.url_id}}" class="fill-1"
                             onclick="fill_tech(this);">Get license! 📝</a>
                         <div style="margin-top: 10px;"></div>
-                        <a style="margin: 0 auto;" id="fill docker_desktop" class="fill-1" target="_blank"
-                            onclick="hrefs(this);" href="https://www.docker.com/products/docker-desktop/">Info ℹ️</a>
+                        <a style="margin: 0 auto;" id="{{docker_prod.url_id}}" class="fill-1" target="_blank"
+                            onclick="hrefs(this);" href="{{docker_prod.url}}"">Info ℹ️</a>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
     </div>
 

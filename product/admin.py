@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Product)
 admin.site.register(DotProduct)
 admin.site.register(ToolProduct)
+admin.site.register(Docker)
